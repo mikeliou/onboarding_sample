@@ -1,7 +1,11 @@
 import xml.etree.ElementTree as ET
+from lxml import etree
 
-root = ET.parse('sample.sdlxliff').getroot()
+root = etree.parse('C:\\Users\\mlc\\Downloads\\sample.sdlxliff')
 
-for node in root.iter():
-    if 'seg-source' in node.tag and node.text is not None:
+find = etree.XPath("//*[local-name()='seg-source']")
+#text = find_text(root)[0]
+for node in find(root):
+    if node.text:
         print(node.text)
+
